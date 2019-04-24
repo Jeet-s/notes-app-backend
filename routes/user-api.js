@@ -25,7 +25,6 @@ router.post('/register', function(req, res){
             res.send({message: 'user created successfully'});
         });
     });
-    
 });
 
 router.post('/login', function(req, res){
