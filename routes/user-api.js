@@ -19,7 +19,12 @@ router.post('/register', function(req, res){
     let obj = {};
     User.find({}).then((user) => {
         console.log(user)
-        obj.userId = Math.max.apply(Math, user.map((o) => o.userId)) + 1;
+        if (parseInt(Math.max.apply(Math, user.map((o) => o.userId))) + 1){
+            obj.userId = parseInt(Math.max.apply(Math, user.map((o) => o.userId)) + 1);
+        } else {
+            obj.userId = 1;
+        }
+        
         obj = {...obj, ...req.body}
         User.create(obj).then(() => {
             res.send({message: 'user created successfully'});
